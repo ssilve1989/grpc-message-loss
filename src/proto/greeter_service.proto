@@ -1,0 +1,17 @@
+syntax = "proto2";
+
+package app;
+
+message StreamHelloRequest {
+  // how many messages should the stream response emit
+  required int32 count = 1;
+}
+
+message StreamHelloResponse {
+  required string message = 1;
+  required int64 timestamp = 2;
+}
+
+service GreeterService {
+  rpc StreamHello (StreamHelloRequest) returns (stream StreamHelloResponse);
+}

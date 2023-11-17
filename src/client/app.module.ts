@@ -39,7 +39,10 @@ class AppModule implements OnApplicationBootstrap {
 
     let received = 0;
     this.service.streamHello({ count }).subscribe({
-      next: () => this.logger.log(++received),
+      next: () => ++received,
+      complete: () => {
+        this.logger.log(`received ${received} replies`);
+      },
     });
   }
 }
